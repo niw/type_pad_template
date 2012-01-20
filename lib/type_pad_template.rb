@@ -5,6 +5,7 @@ require "uri"
 require "forwardable"
 
 module TypePadTemplate
+  autoload :Command, "type_pad_template/command"
   autoload :Form, "type_pad_template/form"
   autoload :Request, "type_pad_template/request"
   autoload :Response, "type_pad_template/response"

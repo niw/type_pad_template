@@ -25,6 +25,8 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency("typhoeus")
   s.add_runtime_dependency("nokogiri")
+  s.add_runtime_dependency("thor")
+  s.add_runtime_dependency("highline")
 
   s.add_development_dependency("bundler")
   s.add_development_dependency("rake")

@@ -11,7 +11,7 @@ module TypePadTemplate
         :type => :string,
         :aliases => "-b",
         :required => true,
-        :desc => "Blog ID which blogs command shows."
+        :desc => "Blog ID which blogs command shows"
       })
     end
 
@@ -19,7 +19,7 @@ module TypePadTemplate
       method_option(:directory, {
         :type => :string,
         :aliases => "-d",
-        :desc => "Path to templates directory."
+        :desc => "Path to templates directory"
       })
     end
 
@@ -27,13 +27,13 @@ module TypePadTemplate
       method_option(:pattern, {
         :type => :string,
         :aliases => "-p",
-        :desc => "Pattern to select templates."
+        :desc => "Pattern to select templates"
       })
     end
 
-    desc "login", "Login to TypePad."
-    method_option :username, :type => :string, :aliases => "-u", :desc => "Login email address."
-    method_option :password, :type => :string, :aliases => "-p", :desc => "Password."
+    desc "login", "Login to TypePad"
+    method_option :username, :type => :string, :aliases => "-u", :desc => "Login email address"
+    method_option :password, :type => :string, :aliases => "-p", :desc => "Password"
     def login
       username = options[:username] || highline.ask("Enter login email address: ")
       password = options[:password] || highline.ask("Enter password: "){|q| q.echo = false }
@@ -45,23 +45,23 @@ module TypePadTemplate
       end
     end
 
-    desc "logout", "Logout from TypePad."
+    desc "logout", "Logout from TypePad"
     def logout
       File.unlink(SESSION_FILE)
     end
 
-    desc "blogs", "List current blogs."
+    desc "blogs", "List current blogs"
     def blogs
       print_table account.blogs.map{|blog| [blog.blog_id, blog.name]}
     end
 
-    desc "templates", "List current templates."
+    desc "templates", "List current templates"
     blog_id_option
     def templates
       print_table blog.templates.map{|template| [template.filename, template.name]}
     end
 
-    desc "download", "Download templates from TypePad."
+    desc "download", "Download templates from TypePad"
     blog_id_option
     directory_option
     pattern_option
@@ -75,7 +75,7 @@ module TypePadTemplate
       Request.dispatch
     end
 
-    desc "upload", "Upload templates from local."
+    desc "upload", "Upload templates from local"
     blog_id_option
     directory_option
     pattern_option

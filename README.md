@@ -6,7 +6,7 @@ This is gem and command interface to manipulate TypePad advanced templates from 
 Usage
 =====
 
-Install gem which provides ``type_pad_tamplate`` command.
+Install gem which provides ``type_pad_template`` command.
 
     gem install type_pad_template
 

@@ -15,11 +15,11 @@ module TypePadTemplate
     end
 
     def login(username, password)
-      form_element = Request.new("/secure/services/signin", :ssl => true)
-        .dispatch
-        .response
-        .doc
-        .at("//form[@id='signin-form-typepad']")
+      form_element = Request.new("/secure/services/signin", :ssl => true).
+        dispatch.
+        response.
+        doc.
+        at("//form[@id='signin-form-typepad']")
 
       form = Form.new(form_element).tap do |f|
         f[:username] = username
@@ -30,9 +30,10 @@ module TypePadTemplate
         :ssl => true,
         :method => :post,
         :params => form.to_hash
-      }).dispatch
-        .response
-        .cookies
+      }).
+        dispatch.
+        response.
+        cookies
 
       self
     end
@@ -41,16 +42,16 @@ module TypePadTemplate
       return [] unless logged_in?
 
       request("/dashboard") do |response|
-        response
-        .doc
-        .search("//ul[@id='blogs-list']//a[@class='blog-name']")
-        .map do |element|
+        response.
+        doc.
+        search("//ul[@id='blogs-list']//a[@class='blog-name']").
+        map do |element|
           if %r{/([0-9a-f]+)/dashboard$} === element["href"]
             id = $1
             Blog.new(self, id, element.text)
           end
-        end
-        .compact
+        end.
+        compact
       end
     end
 
@@ -65,7 +66,9 @@ module TypePadTemplate
       request = Request.new(path, merge_login_cookie_header(options))
 
       if block_given?
-        yield request.dispatch.response
+        yield request.
+          dispatch.
+          response
       else
         request
       end

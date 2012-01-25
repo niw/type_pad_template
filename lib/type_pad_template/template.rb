@@ -54,17 +54,16 @@ module TypePadTemplate
     private
 
     def get_form_for_body(response)
-      Form.new(
-        response
-        .doc
-        .at("form[@id='template-form']"))
+      Form.new(response.
+        doc.
+        at("form[@id='template-form']"))
     end
 
     def get_text_from_response(response)
-      response
-      .doc
-      .at("//form[@id='template-form']//textarea[@name='text']")
-      .text
+      response.
+      doc.
+      at("//form[@id='template-form']//textarea[@name='text']").
+      text
     end
 
     # FIXME make this works in Form.

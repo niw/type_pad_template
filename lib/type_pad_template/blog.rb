@@ -16,10 +16,10 @@ module TypePadTemplate
       return [] unless design_id = current_design_id
 
       request("/site/blogs/#{@blog_id}/design/#{design_id}/templates") do |response|
-        response
-        .doc
-        .search("//td[@class='index-templates' or @class='archive-templates' or @class='template-modules']/a[@class='link']")
-        .map do |element|
+        response.
+        doc.
+        search("//td[@class='index-templates' or @class='archive-templates' or @class='template-modules']/a[@class='link']").
+        map do |element|
           name = element.text
 
           output_file_element = element.at("../..//td[@class='output-file']")
@@ -39,10 +39,9 @@ module TypePadTemplate
 
     def current_design_id
       request("/site/blogs/#{@blog_id}/design") do |response|
-        response
-        .doc
-        .css(".design-current .design-actions a")
-        .find do |a|
+        response.
+        doc.
+        css(".design-current .design-actions a").find do |a|
           %r{/([0-9a-f]+)/templates$} === a["href"]
         end and $1
       end

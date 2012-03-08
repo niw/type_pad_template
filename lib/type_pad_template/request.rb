@@ -1,13 +1,14 @@
 module TypePadTemplate
   class Request
     DEFAULT_HOST_NAME = "www.typepad.com"
+    MAX_CONCURRENCY = 10
 
     def self.dispatch
       hydra.run
     end
 
     def self.hydra
-      @@hydra ||= Typhoeus::Hydra.new
+      @@hydra ||= Typhoeus::Hydra.new(:max_concurrency => MAX_CONCURRENCY)
     end
 
     def initialize(url_or_path, options = {})
